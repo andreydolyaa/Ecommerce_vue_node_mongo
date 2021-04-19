@@ -3,4 +3,22 @@
     margin: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: .5px;
 }
+p{
+    font-size:14px;
+}
+
+@import './navbar.css';
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+input,button{
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+
