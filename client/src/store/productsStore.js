@@ -33,6 +33,12 @@ export default {
                 localStorage.setItem('similarItems',
                     JSON.stringify(state.similarItems));
             }
+        },
+        setUpdatedProduct(state, { newProduct }) {
+            const idx = state.products.findIndex(product => {
+                return product._id === newProduct._id;
+            });
+            state.products.splice(idx, 1, newProduct);
         }
     },
     actions: {
@@ -49,6 +55,12 @@ export default {
         loadSimilarItems(context, { productType }) {
             console.log(productType);
             context.commit({ type: 'setSimilarItems', productType });
+        },
+
+        async updateProduct(context, { newProduct }) {
+            const product = await productsService.updateProduct(newProduct._id, newProduct);
+            context.commit({ type: 'setUpdatedProduct', newProduct });
+            context.commit({ type: 'setProduct', product: newProduct });
         }
     }
 }
