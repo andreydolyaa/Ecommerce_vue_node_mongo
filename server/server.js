@@ -16,11 +16,12 @@ if (process.env.NODE_ENV === 'production') {
     };
     app.use(cors(corsOptions));
 
-    
+
 }
 
 //'mongodb://localhost/ecommerceDB'
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set('useFindAndModify', false);
 const db = mongoose.connection;
 
 

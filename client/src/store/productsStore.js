@@ -53,7 +53,6 @@ export default {
         },
 
         loadSimilarItems(context, { productType }) {
-            console.log(productType);
             context.commit({ type: 'setSimilarItems', productType });
         },
 
