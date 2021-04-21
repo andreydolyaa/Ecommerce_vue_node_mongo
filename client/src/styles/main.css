@@ -3,6 +3,11 @@
 @import "./product-preview.css";
 @import "./products-list.css";
 @import "./filter-bar.css";
+@import "./product-details.css";
+@import "./rating-bar.css";
+@import "./similar-items-bar.css";
+@import "./reviews.css";
+@import "./add-review.css";
 @font-face {
     font-family: lato-regular;
     src: url(~@/assets/fonts/Lato-Regular.ttf);
@@ -46,4 +51,9 @@ a {
     height: 7vh;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.1);
+}
+.title {
+    color: rgb(78, 84, 88);
+    text-align: center;
+    margin: 10px;
 }

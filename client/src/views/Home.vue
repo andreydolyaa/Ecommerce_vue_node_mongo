@@ -5,7 +5,6 @@
 			<h1>NEW WAYS TO <span>DESIGN</span> YOUR HOME</h1>
 			<div>
 				<router-link to="/product">Shop Now</router-link>
-				<router-link to="/signup">Signup</router-link>
 			</div>
 		</div>
 	</div>

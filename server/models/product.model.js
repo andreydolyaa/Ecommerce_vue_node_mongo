@@ -36,6 +36,9 @@ const productSchema = mongoose.Schema({
     numInStock: {
         type: Number,
         required: true
+    },
+    reviews:{
+        type:Array
     }
 
 });

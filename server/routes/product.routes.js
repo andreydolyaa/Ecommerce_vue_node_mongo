@@ -38,7 +38,8 @@ router.post('/', async (req, res) => {
         material: req.body.material,
         color: req.body.color,
         price: req.body.price,
-        numInStock: req.body.numInStock
+        numInStock: req.body.numInStock,
+        reviews: req.body.reviews
     });
     try {
         const newProduct = await product.save();

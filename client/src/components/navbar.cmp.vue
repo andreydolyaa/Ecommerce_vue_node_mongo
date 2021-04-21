@@ -7,7 +7,7 @@
 				<p>About</p>
 				<p>Contact</p>
 			</div>
-			<div class="logo flex">
+			<div class="logo flex" @click="toHomePage">
 				<h2>
 					Furns
 					<span>.</span>
@@ -23,6 +23,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+	methods: {
+		toHomePage() {
+			this.$router.push("/");
+		},
+	},
+};
 </script>
 

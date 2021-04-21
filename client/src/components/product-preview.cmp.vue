@@ -20,8 +20,16 @@ export default {
 	methods: {
 		redirectToProduct() {
 			this.$router.push(`product/details/${this.product._id}`);
+			this.setSimilarProducts();
+		},
+		setSimilarProducts() {
+			this.$store.dispatch({
+				type: "loadSimilarItems",
+				productType: this.product.type,
+			});
 		},
 	},
+	created() {},
 };
 </script>
 
