@@ -4,7 +4,7 @@
 			<img :src="product.imgs[0]" alt />
 			<p>{{product.title}}</p>
 			<p>{{product.description}}</p>
-			<p>${{product.price}}</p>
+			<p>${{formatPrice(product.price)}}</p>
 		</div>
 	</div>
 </template>
@@ -18,6 +18,10 @@ export default {
 		return {};
 	},
 	methods: {
+        formatPrice(value) {
+			let val = (value / 1).toFixed(2).replace(".", ".");
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		},
 		redirectToProduct() {
 			this.$router.push(`product/details/${this.product._id}`);
 			this.setSimilarProducts();

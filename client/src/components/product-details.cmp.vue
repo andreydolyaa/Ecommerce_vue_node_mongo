@@ -30,7 +30,7 @@
 					<p>Category: {{product.category}}</p>
 				</div>
 				<div>
-					<button>Add to cart</button>
+					<button @click="addItemToCart">Add to cart</button>
 					<button>Buy now</button>
 				</div>
 			</div>
@@ -61,8 +61,11 @@ export default {
 	},
 	methods: {
 		formatPrice(value) {
-			let val = (value / 1).toFixed(2).replace(".", ",");
-			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+			let val = (value / 1).toFixed(2).replace(".", ".");
+			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		},
+		addItemToCart() {
+			this.$store.commit({ type: "addItemToCart", item: this.product });
 		},
 	},
 	created() {

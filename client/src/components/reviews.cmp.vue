@@ -16,9 +16,9 @@
 					<div class="likes">
 						<p class="rate">Rated: {{review.rate}} / 5</p>
 						<div class="likes-two">
-							<ThumbUp :size="14" class="r" @click="like(review)" />
+							<font-awesome-icon icon="thumbs-up" size="xs" @click="like(review)" class="r"/>
 							<p>{{review.likes}}</p>
-							<ThumbDown :size="14" class="r" @click="dislike(review)" />
+							<font-awesome-icon icon="thumbs-down" size="xs" @click="dislike(review)" class="r"/>
 							<p>{{review.dislikes}}</p>
 						</div>
 					</div>
@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import ThumbUp from "vue-material-design-icons/ThumbUp.vue";
-import ThumbDown from "vue-material-design-icons/ThumbDown.vue";
+
+
 export default {
 	props: {
 		product: Object,
@@ -53,10 +53,7 @@ export default {
 			this.$store.dispatch({ type: "updateProduct", newProduct });
         },
 	},
-	components: {
-		ThumbUp,
-		ThumbDown,
-	},
+
 };
 </script>
 

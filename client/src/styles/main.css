@@ -8,6 +8,7 @@
 @import "./similar-items-bar.css";
 @import "./reviews.css";
 @import "./add-review.css";
+@import "./cart.css";
 @font-face {
     font-family: lato-regular;
     src: url(~@/assets/fonts/Lato-Regular.ttf);
@@ -51,9 +52,14 @@ a {
     height: 7vh;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
 }
 .title {
     color: rgb(78, 84, 88);
     text-align: center;
     margin: 10px;
 }
+.cart-icon {
+    cursor: pointer;
+}
+

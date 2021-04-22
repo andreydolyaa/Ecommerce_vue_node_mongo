@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 
 import productsStore from './productsStore';
 import userStore from './userStore';
+import cartStore from './cartStore';
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     },
     modules: {
         productsStore,
-        userStore
+        userStore,
+        cartStore
     }
 })
