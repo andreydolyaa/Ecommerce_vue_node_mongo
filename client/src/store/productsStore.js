@@ -4,11 +4,23 @@ export default {
     state: {
         products: null,
         product: null,
-        similarItems: null
+        similarItems: null,
+        filterBy: {
+            name: '',
+            price: null,
+            type: '',
+            material: '',
+            color: ''
+        }
     },
     getters: {
         getProducts(state) {
-            return state.products;
+            return (state.filterBy.name || state.filterBy.price || state.filterBy.type || state.filterBy.material || state.filterBy.color)
+                ?
+                state.products.filter(product => product.title.toLowerCase().includes(state.filterBy.name.toLowerCase())
+                 || product.price <= state.filterBy.price)
+                :
+                state.products;
         },
         getProduct(state) {
             return state.product;
@@ -39,6 +51,9 @@ export default {
                 return product._id === newProduct._id;
             });
             state.products.splice(idx, 1, newProduct);
+        },
+        setFilterBy(state, { filter, pos }) {
+            state.filterBy[pos] = filter;
         }
     },
     actions: {

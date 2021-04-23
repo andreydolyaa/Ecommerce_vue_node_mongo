@@ -1,3 +1,4 @@
+
 .navbar{
     justify-content: space-between;
     padding:1rem;
@@ -8,6 +9,7 @@
     width:100%;
     background-color:rgba(0, 0, 0, 0.7);
 }
+
 .links-container p,.login-container p{
     margin:0 10px;
 }

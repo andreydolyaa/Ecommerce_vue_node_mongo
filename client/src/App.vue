@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" @click="closeCart">
 		<navbar :showCart="showCart" @cartClicked="onCartClick" />
 		<transition name="fade">
 			<div v-if="showCart" class="k">
@@ -24,6 +24,10 @@ export default {
 		onCartClick(val) {
 			this.showCart = val;
 		},
+        closeCart(ev){
+            console.log(ev.target.getAttribute("class"));
+            
+        }
 	},
 	created() {
 		this.$store.dispatch({ type: "loadProducts" });
