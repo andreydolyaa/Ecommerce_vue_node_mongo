@@ -1,8 +1,8 @@
 <template>
 	<div class="admin-area">
-
-        <h1>admin</h1>
-    </div>
+		<div class="spacer"></div>
+		<h1>admin</h1>
+	</div>
 </template>
 
 <script>

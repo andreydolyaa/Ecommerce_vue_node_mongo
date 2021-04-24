@@ -27,6 +27,8 @@
 				<div v-else class="flex">
 					<p>Logged as Admin</p>
 					<p>|</p>
+                    <router-link to="/admin"><font-awesome-icon icon="cog" class="cart-icon"/></router-link>
+					<p>|</p>
 					<font-awesome-icon icon="sign-out-alt" class="cart-icon" @click="logout" />
 				</div>
 			</div>
@@ -60,7 +62,8 @@ export default {
 			);
 		},
 		logout() {
-			this.$store.commit({ type: "setLogout" });
+            this.$store.commit({ type: "setLogout" });
+            this.$router.push("/");
 		},
 	},
 };

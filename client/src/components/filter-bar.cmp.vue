@@ -1,6 +1,5 @@
 <template>
 	<div class="filter-bar flex">
-
 		<div class="inner-container flex">
 			<label for="product" class="de-label">
 				Search Product:
@@ -27,7 +26,7 @@
 			<label for="price" class="de-label">
 				Max Price:
 				<div class="flex slider">
-					<input type="range" :min="minPrice" max="20000" default="20000" v-model="filter.currPrice" @input="useFilter" class="range-input"/>
+					<input type="range" :min="minPrice" max="20000" default="20000" v-model="filter.currPrice" @input="useFilter" class="range-input" />
 				</div>
 				<div>
 					<p class="de-label">${{formatPrice(filter.currPrice)}}</p>
@@ -61,14 +60,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
-
-<div class="filter-name flex">
-			<p>Search</p>
-			<input type="text" placeholder="Search for a product..." />
-		</div>
-		<div class="filter-price flex">
-			<p>Max Price:</p>
-			<input type="range" />
-		</div>
