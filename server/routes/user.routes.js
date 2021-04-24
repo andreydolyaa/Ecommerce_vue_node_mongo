@@ -33,7 +33,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const user = new User({
-        name: req.body.name,
         email: req.body.email,
         password: await _encryptPassword(req.body.password)
     })
@@ -76,7 +75,18 @@ router.patch('/:id', async (req, res) => {
 })
 
 
-
+router.post('/login', async (req, res) => {
+    const user = await login(req.body.username, req.body.password);
+    try {
+        if(user){
+            let newUser = user.toObject();
+            delete newUser['password'];
+            res.json(newUser);
+        } 
+    } catch (err) {
+        res.status(401).json({ message: err.message });
+    }
+});
 
 
 async function _encryptPassword(password) {
@@ -91,6 +101,15 @@ async function _encryptPassword(password) {
 async function _decryptPassword(password, hash) {
     const isMatched = await bcrypt.compare(password, hash);
     return isMatched;
+}
+
+async function login(email, password) {
+    const newUser = await User.findOne({ email: email });
+    const passwordIsCorrect = await _decryptPassword(password, newUser.password);
+    if (email === newUser.email && passwordIsCorrect === true){
+        return newUser;
+    }
+    else return 'Wrong username or password';
 }
 
 

@@ -1,10 +1,10 @@
 <template>
-	<div>
+	<div v-if="product">
 		<div class="spacer"></div>
 
 		<div class="product-details" v-if="product">
 			<div class="img-container">
-				<img :src="product.imgs[0]" alt />
+				<img :src="product.imgs[0]" v-cloak />
 			</div>
 
 			<div class="details-container">
@@ -35,12 +35,18 @@
 				</div>
 			</div>
 		</div>
+		<div v-if="isAdded">
+			<action :text="addedText" />
+		</div>
 		<!-- TWO COMPONENTS HERE ---- REVIEWS ---- SIMILAR ITEMS -->
 		<div class="title">
 			<h1>Similar Products</h1>
 		</div>
 		<similarItemsBar :product="product" />
 		<addReview :product="product" />
+		<div :style="{width:'300px',margin:'auto'}">
+			<ratingBar :product="product" />
+		</div>
 		<reviews :product="product" />
 	</div>
 </template>
@@ -50,9 +56,13 @@ import ratingBar from "@/components/rating-bar.cmp.vue";
 import similarItemsBar from "@/components/similar-items-bar.cmp";
 import reviews from "@/components/reviews.cmp.vue";
 import addReview from "../components/add-review.cmp.vue";
+import action from "../components/action.cmp.vue";
 export default {
 	data() {
-		return {};
+		return {
+			isAdded: false,
+			addedText: "Product added to cart!",
+		};
 	},
 	computed: {
 		product() {
@@ -65,18 +75,28 @@ export default {
 			return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		},
 		addItemToCart() {
+			this.setLoadingModal();
 			this.$store.commit({ type: "addItemToCart", item: this.product });
+		},
+		setLoadingModal() {
+			this.isAdded = true;
+			var interval = setInterval(() => {
+				this.isAdded = false;
+				clearInterval(interval);
+			}, 3000);
 		},
 	},
 	created() {
 		const productId = this.$route.params.productId;
 		this.$store.dispatch({ type: "loadProduct", productId });
 	},
+	destroyed() {},
 	components: {
 		ratingBar,
 		similarItemsBar,
 		reviews,
 		addReview,
+		action,
 	},
 };
 </script>

@@ -10,19 +10,27 @@
     background-color:rgba(0, 0, 0, 0.7);
 }
 
-.links-container p,.login-container p{
+.links-container p,.login-container p, .links-container a,.login-container a{
     margin:0 10px;
 }
-
+.links-container a,.login-container a{
+    color:white;
+    transition: .2s;
+}
+.links-container a:hover{
+    color:rgb(255, 140, 33);
+}
 
 .logo{
     position: absolute;
     left:50%;
     top:0;
-    transform: translate(-50%,70%);
+    transform: translate(-50%,60%);
+    color:rgb(255, 255, 255);
+    cursor: pointer;
 }
-.logo span{
-    color:rgb(255, 111, 0);
+h2 span{
+    color:rgb(255, 140, 33);
 }
 .login-container{
     

@@ -9,6 +9,7 @@
 @import "./reviews.css";
 @import "./add-review.css";
 @import "./cart.css";
+@import "./login.css";
 @font-face {
     font-family: lato-regular;
     src: url(~@/assets/fonts/Lato-Regular.ttf);
@@ -21,7 +22,10 @@
     font-family: lato-black;
     src: url(~@/assets/fonts/Lato-Black.ttf);
 }
-
+html {
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
 * {
     padding: 0;
     margin: 0;
@@ -30,9 +34,8 @@
     letter-spacing: 0.5px;
     font-family: lato-regular;
 }
-#app{
-    min-height:100vh;
-    
+#app {
+    min-height: 100vh;
 }
 
 p {
@@ -67,4 +70,3 @@ a {
 .cart-icon {
     cursor: pointer;
 }
-

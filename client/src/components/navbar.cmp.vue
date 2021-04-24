@@ -2,10 +2,10 @@
 	<div>
 		<div class="navbar flex">
 			<div class="links-container flex">
-				<p>Products</p>
-				<p>Categories</p>
-				<p>About</p>
-				<p>Contact</p>
+				<router-link to="/">Home</router-link>
+				<router-link to="/product">Products</router-link>
+				<router-link to="/">Categories</router-link>
+				<router-link to="/">Contact</router-link>
 			</div>
 			<div class="logo flex" @click="toHomePage">
 				<h2>
@@ -21,9 +21,14 @@
 					</div>
 				</div>
 				<p>|</p>
-				<p>Login</p>
-				<p>|</p>
-				<p>Signup</p>
+				<div v-if="!user">
+					<router-link to="/login">Login</router-link>
+				</div>
+				<div v-else class="flex">
+					<p>Logged as Admin</p>
+					<p>|</p>
+					<font-awesome-icon icon="sign-out-alt" class="cart-icon" @click="logout" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -40,6 +45,9 @@ export default {
 		cartLength() {
 			return this.$store.getters.getCartLength;
 		},
+		user() {
+			return this.$store.getters.getUser;
+		},
 	},
 	methods: {
 		toHomePage() {
@@ -50,6 +58,9 @@ export default {
 				"cartClicked",
 				(this.toggleCartMenu = !this.toggleCartMenu)
 			);
+		},
+		logout() {
+			this.$store.commit({ type: "setLogout" });
 		},
 	},
 };

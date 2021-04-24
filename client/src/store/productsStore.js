@@ -6,6 +6,7 @@ export default {
         products: null,
         product: null,
         similarItems: null,
+        loadingStatus: false,
         filter: {
             name: '',
             price: null,
@@ -16,7 +17,6 @@ export default {
         getProducts(state) {
             const { filter } = state;
             const { products } = state;
-            console.log(filter.type);
             if (filter.name || filter.price || filter.type) {
                 return products.filter(product => product.title.toLowerCase().includes(filter.name.toLowerCase())
                     && product.price <= filter.price && filter.type === 'all' ? products : product.type === filter.type
@@ -30,6 +30,9 @@ export default {
         getSimilarItems(state) {
             return state.similarItems;
         },
+        getLoadingStatus(state) {
+            return state.loadingStatus;
+        }
     },
     mutations: {
         setProducts(state, { products }) {
@@ -59,10 +62,16 @@ export default {
             state.filter.price = filter.currPrice;
             state.filter.type = filter.filterType;
         },
+        setLoadingStatus(state, newStatus) {
+            state.loadingStatus = newStatus;
+            console.log(state.loadingStatus);
+        },
     },
     actions: {
         async loadProducts(context) {
-            const products = await productsService.query();
+            context.commit('setLoadingStatus', true);
+            const products = await productsService.query()
+                .then(context.commit('setLoadingStatus', false));
             context.commit({ type: 'setProducts', products });
         },
 

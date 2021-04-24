@@ -1,5 +1,6 @@
 <template>
 	<div id="app" @click="closeCart">
+        <div v-cloak>
 		<navbar :showCart="showCart" @cartClicked="onCartClick" />
 		<transition name="fade">
 			<div v-if="showCart" class="k">
@@ -7,6 +8,7 @@
 			</div>
 		</transition>
 		<router-view />
+        </div>
 	</div>
 </template>
 
@@ -40,6 +42,9 @@ export default {
 </script>
 
 <style lang="css">
+[v-cloak] {
+    display: none;
+}
 .fade-enter-active,
 .fade-leave-active {
 	transition: all 200ms;
