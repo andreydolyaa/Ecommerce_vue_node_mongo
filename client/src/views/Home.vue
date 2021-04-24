@@ -3,7 +3,7 @@
 		<div class="img-container"></div>
 		<div class="intro-text-container flex">
 			<h1>NEW WAYS TO <span>DESIGN</span> YOUR HOME</h1>
-			<div>
+			<div >
 				<router-link to="/product">Shop Now</router-link>
 			</div>
 		</div>

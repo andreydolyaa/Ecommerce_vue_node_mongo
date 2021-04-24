@@ -1,33 +1,35 @@
 
 import { productsService } from './../services/productsService';
+const types = ['sofa', 'table', 'chair', 'lamp', 'dresser', 'carpet', 'bed', 'decoration'];
 export default {
     state: {
         products: null,
         product: null,
         similarItems: null,
-        filterBy: {
+        filter: {
             name: '',
             price: null,
-            type: '',
-            material: '',
-            color: ''
+            type: ''
         }
     },
     getters: {
         getProducts(state) {
-            return (state.filterBy.name || state.filterBy.price || state.filterBy.type || state.filterBy.material || state.filterBy.color)
-                ?
-                state.products.filter(product => product.title.toLowerCase().includes(state.filterBy.name.toLowerCase())
-                 || product.price <= state.filterBy.price)
-                :
-                state.products;
+            const { filter } = state;
+            const { products } = state;
+            console.log(filter.type);
+            if (filter.name || filter.price || filter.type) {
+                return products.filter(product => product.title.toLowerCase().includes(filter.name.toLowerCase())
+                    && product.price <= filter.price && filter.type === 'all' ? products : product.type === filter.type
+                    && product.price <= filter.price && product.title.toLowerCase().includes(filter.name.toLowerCase()));
+            }
+            else return products;
         },
         getProduct(state) {
             return state.product;
         },
         getSimilarItems(state) {
             return state.similarItems;
-        }
+        },
     },
     mutations: {
         setProducts(state, { products }) {
@@ -52,9 +54,11 @@ export default {
             });
             state.products.splice(idx, 1, newProduct);
         },
-        setFilterBy(state, { filter, pos }) {
-            state.filterBy[pos] = filter;
-        }
+        setFilterBy(state, { filter }) {
+            state.filter.name = filter.filterName;
+            state.filter.price = filter.currPrice;
+            state.filter.type = filter.filterType;
+        },
     },
     actions: {
         async loadProducts(context) {

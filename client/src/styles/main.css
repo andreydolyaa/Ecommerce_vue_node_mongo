@@ -30,6 +30,11 @@
     letter-spacing: 0.5px;
     font-family: lato-regular;
 }
+#app{
+    min-height:100vh;
+    
+}
+
 p {
     font-size: 14px;
 }

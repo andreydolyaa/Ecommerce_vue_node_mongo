@@ -25,7 +25,7 @@ export default {
 			this.showCart = val;
 		},
         closeCart(ev){
-            console.log(ev.target.getAttribute("class"));
+            // console.log(ev.target.getAttribute("class"));
             
         }
 	},
